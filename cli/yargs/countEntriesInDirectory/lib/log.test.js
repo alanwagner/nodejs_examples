@@ -18,6 +18,17 @@ describe('test `log()` successful runs', () => {
   })
 })
 
+describe('test `log()` throws error', () => {
+  test('expect `log()` to pass an error', async () => {
+    expect.assertions(1)
+    try {
+      await log(awaitedMethodThrowsError())
+    } catch (error) {
+      expect(error.toString()).toMatch('Error: This is an expected error')
+    }
+  })
+})
+
 async function awaitedMethodWithoutAPromise (anyValue) {
   return anyValue
 }
@@ -26,4 +37,8 @@ async function awaitedMethodWithAPromise (anyValue) {
   const valueToReturn = await awaitedMethodWithoutAPromise(anyValue) * 2
 
   return valueToReturn
+}
+
+async function awaitedMethodThrowsError () {
+  throw new Error('This is an expected error')
 }
