@@ -5,7 +5,14 @@ describe('test `countFiles()` successful runs', () => {
     const directory = __dirname // this will be `lib`
     const entries = await countEntries(directory)
 
-    expect(entries).toBe(4)
+    expect(entries).toBe(5)
+  })
+
+  test('Test entries recursively in cli/yargs/countEntriesInDirectory', async () => {
+    const directory = __dirname // this will be `lib`
+    const entries = await countEntries(directory, true)
+
+    expect(entries).toBe(6)
   })
 })
 
