@@ -5,10 +5,22 @@ const countEntries = require('../lib/countEntries') // requires our code that do
 const log = require('../lib/log') // tiny tool we built to log output that's async/await
 
 const yargs = require('yargs')
-  .usage('Usage: $0 --directory=[path to a directory]') // defines what will be shown when the command errors out
-  .demand('directory') // makes the `--directory` flag required
-  .alias('directory', 'd') // aliases `--directory` to `-d`
-  .describe('directory', 'the directory to count files within.') // describes what we're looking for from `--directory` for users when they write `--help`
+  .usage('Usage: $0 --directory=[path to a directory] --recurse') // defines what will be shown when the command errors out
+  .options({
+    d: {
+      alias: 'directory',
+      demandOption: true,
+      describe: 'the directory to count files within.',
+      type: 'string'
+    },
+    r: {
+      alias: 'recurse',
+      demandOption: false,
+      default: false,
+      describe: 'should we recurse on child directories?',
+      type: 'boolean'
+    }
+  })
   .argv
 
-log(countEntries(yargs.directory))
+log(countEntries(yargs.directory, yargs.recurse))
