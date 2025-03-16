@@ -1,18 +1,20 @@
 # countEntriesInDirectory
 
-This is a CLI built with [yargs](https://www.npmjs.com/package/yargs) that searches the directory (path) passed to it and then spits out how many entries (files and directories) are within _that directory_. It does not recursively search additional directories within it.
+This is a CLI built with [yargs](https://www.npmjs.com/package/yargs) that searches the directory (path) passed to it and then spits out how many entries (files and directories) are within _that directory_. It can recursively search additional directories within it.
 
 ## Usage
 
 Here is the output of running `node bin/cli.js -h` from the `countEntriesInDirectory` directory:
 
 ```bash
-Usage: cli.js --directory=[path to a directory]
+Usage: cli.js --directory=[path to a directory] [--recurse]
 
 Options:
   --help           Show help                                           [boolean]
   --version        Show version number                                 [boolean]
-  --directory, -d  the directory to count files within.               [required]
+  -d, --directory  The directory to count files within.      [string] [required]
+  -r, --recurse    Should we recurse on child directories?
+                                                      [boolean] [default: false]
 ```
 
 ### As a Local Project
